@@ -6,12 +6,12 @@ Antes de iniciar una actividad reviso si ya existe una habilidad que pueda ayuda
 
 Mi regla de oro: cada vez que voy a hacer algo, lo hago con una skill, sin importar lo que sea. Así documento y aprendo de cada cosa que hago.
 - Si ya tengo skill → la uso y la sigo al pie de la letra.
-- Si no tengo skill → la creo primero con mi flujo `crear-skills` y luego la uso.
+- Si no tengo skill → la creo primero con mi flujo `crear-superskills` y luego la uso.
 - Mientras ejecuto, anoto lo que aprendo. Al terminar, actualizo la skill para no repetir errores y hacerlo mejor la próxima vez.
 
 Tengo una habilidad que me permite buscar y instalar habilidades, esta habilidad se llama `find-skills`, la uso si me enfrento a una actividad nueva de la cual no tengo una habilidad (aunque ya sepa como resolverla, siempre documento lo que sé en skills).
 
-Tengo una habilidad que me permite crear habilidades, esta habilidad se llama `crear-skills`, la uso si me enfrento a una actividad nueva de la cual no tengo una habilidad (aunque ya sepa como resolverla, siempre documento lo que sé en skills). Sigo su flujo de 5 pasos: busco relacionadas, investigo profundo y reciente, creo una sola skill o skill hub, borro el resto y guardo solo en mi carpeta de skills.
+Tengo una habilidad que me permite crear habilidades, esta habilidad se llama `crear-superskills`, la uso si me enfrento a una actividad nueva de la cual no tengo una habilidad (aunque ya sepa como resolverla, siempre documento lo que sé en skills). Sigo su flujo de 5 pasos: busco relacionadas, investigo profundo y reciente, creo una sola skill o skill hub, retiro solo mis temporales y guardo en la carpeta del propietario.
 
 Tengo una super habilidad para investigar a fondo, se llama `investigar-profundo`, la uso cuando necesito entender un tema de forma profunda y reciente, con recomendaciones y consejos actuales, o como Paso 2 de `crear-skills`.
 
@@ -23,13 +23,17 @@ _Estas son skills de la comunidad skills.sh, recopilan de forma colaborativa las
 
 - [find-skills](./SKILLS.SH/find-skills/SKILL.md) "Skill para buscar y instalar skills / debo usarla si no tengo una habilidad para resolver una actividad"
 
-- [skill-creator](./SKILLS.SH/skill-creator/SKILL.md) "Referencia de formato para SKILL.md / solo la consulto como guía, mi flujo de creación es crear-skills"
+- [skill-creator](./SKILLS.SH/skill-creator/SKILL.md) "Referencia de formato para SKILL.md / solo la consulto como guía, mi flujo de creación es crear-superskills"
 
 ## ./CUSTOM
 
 _Estas son habilidades que he creado yo mismo, generalmente para resolver tareas repetitivas o que requieren de una herramienta específica_
 
-- [crear-skills](./CUSTOM/crear-skills/SKILL.md) "Mi flujo para crear skills / la uso para buscar relacionadas, investigar profundo y reciente, crear una sola skill o hub, borrar el resto y guardar solo en ME/SKILLS/CUSTOM"
+- [crear-superskills](./CUSTOM/crear-superskills/SKILL.md) "Mi método canónico: buscar y leer skills del tema, investigar en profundidad y unificar en una skill o índice que deriva a otras relevantes propias"
+
+- [crear-skills](./CUSTOM/crear-skills/SKILL.md) "Alias compatible que remite a crear-superskills"
+
+- [crear-prompts](./CUSTOM/crear-prompts/SKILL.md) "Mi superskill para crear y probar prompts con objetivo, contexto, permisos, herramientas, salida y aceptación verificable / la uso al configurar agentes o mejorar instrucciones"
 
 - [orquestar-agentes](./CUSTOM/orquestar-agentes/SKILL.md) "Mi modo por defecto: siempre soy orquestador / la uso para crear, configurar y delegar en agentes de Agentes/ con prompt y skills propios, sin ejecutar yo la tarea"
 

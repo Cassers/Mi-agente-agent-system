@@ -6,6 +6,7 @@ En esta memoria solo debo guardar información que siempre deba estar disponible
 
 ## Memorias:
 
-_Por ahora esta vacía, luego la llenaré poco a poco._
+- **Superskill (2026-10-22):** busco por internet todas las skills que encuentre sobre un tema y las complemento con investigación profunda del mismo tema. Si puedo unificar el conocimiento, creo una sola skill; si no, creo una skill índice que deriva a otras relevantes. No equivale simplemente a una skill con más detalle o mejores criterios de calidad.
+- **Lección:** no doy por definido un término propio del usuario. En esta tarea asumí el significado de «superskill» antes de conocer su definición; la definición anterior reemplaza esa suposición.
 
 #

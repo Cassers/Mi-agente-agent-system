@@ -1,89 +1,40 @@
 ---
 name: orquestar-agentes
-description: Mi flujo para actuar siempre como orquestador. Yo la uso por defecto en cada conversación para crear, configurar y delegar en agentes de Agentes/, cada uno con su prompt y skills especializados, sin ejecutar yo la tarea final.
+description: Mi flujo para actuar como orquestadora, configurar y delegar en agentes de Agentes/ con prompts verificables, superskills especializadas y memorias aisladas.
 ---
 
 # Orquestar agentes
 
-Yo soy la IA principal y siempre soy la orquestadora. `ME/` es mi memoria propia y sí la personalizo con mi bootstrap. No ejecuto la tarea final yo sola: creo agentes, los configuro y delego.
+Yo soy la orquestadora principal. Uso esta skill al delegar una tarea o crear, configurar o mantener un agente. No ejecuto la tarea final yo sola. Respeto el contexto ya disponible y una orden explícita de no ejecutar bootstrap.
 
-Yo uso esta skill cuando:
-- Empiezo cualquier conversación (es mi modo por defecto)
-- Me piden crear, configurar, modificar o borrar un agente
-- Me piden una tarea que debe hacer un agente especializado
+## Entender y elegir
 
-Yo no hago la tarea yo mismo si existe o puede existir un agente para ello.
+Yo reviso SYSTEM/REGISTRY.md y reutilizo un agente adecuado antes de crear otro. Defino nombre kebab-case, responsabilidad, objetivo, entradas, entregables, alcance permitido y excluido. Pregunto solo si falta información que cambia la tarea o sus permisos; para decisiones reversibles uso un supuesto explícito. Una responsabilidad = un agente.
 
-## Mi flujo obligatorio
+## Crear y configurar
 
-### 1 - Entender y decidir
+Yo clono SYSTEM/IA_TEMPLATE/ en Agentes/<nombre>/ sin sobrescribir una carpeta existente. Puedo usar `cp -R SYSTEM/IA_TEMPLATE Agentes/<nombre>` en Linux o `Copy-Item -Recurse -LiteralPath "SYSTEM/IA_TEMPLATE" -Destination "Agentes/<nombre>"` en PowerShell.
 
-Yo defino o confirmo:
-- `nombre`: kebab-case corto, ej `revisor-codigo`
-- `rol`: 1 frase
-- `prompt`: qué sabe hacer, tono, límites
-- `skills`: lista mínima inicial (puede ser vacía)
-- `alcance-no`: qué nunca hace
+Yo configuro CONFIG.md, PROMPT.md e IDENTITY.md del clon. Uso [crear-prompts](../crear-prompts/SKILL.md) para definir el contrato del agente y del encargo. En CONFIG.md detallo rutas, recursos, permisos y entregables autorizados, incluidos los compartidos fuera de la carpeta del agente. No infiero permiso de publicación, envío o acciones externas por acceso a una herramienta.
 
-Si falta algo, pregunto. No invento datos personales. Una responsabilidad = un agente.
+Antes de delegar, yo creo o adapto superskills reales para las responsabilidades especializadas del agente siguiendo [crear-superskills](../crear-superskills/SKILL.md). Las guardo en Agentes/<nombre>/SKILLS/CUSTOM/<skill>/SKILL.md y registro cada una con enlace y disparador en su SKILLS/INDEX.md. No basta crear el índice, copiar una habilidad genérica ni prometer que el hijo las hará después.
 
-### 2 - Crear carpeta en Agentes/
+Yo busco ampliamente las skills de internet que encuentre sobre el tema, leo las relevantes y después investigo el mismo tema en profundidad para complementarlas. Sintetizo todo en una sola skill si es cohesivo; si no, creo una skill índice que deriva a otras skills relevantes del mismo propietario. Registro fuentes, aportes, descartes y límites; no afirmo haber cubierto todo internet. Creo el conjunto mínimo que cubra el encargo, sin inflar el número ni duplicar capacidades. El prompt indica qué skill aplicar; el detalle experto vive en ella.
 
-Yo clono la plantilla, nunca la muevo:
+Yo conservo USER.md y MEMORIES/* del clon sin datos personales inventados; no inicio bootstrap en hijos. Relleno los placeholders operativos de CONFIG.md, PROMPT.md, IDENTITY.md e índice y skills configuradas. Los placeholders de memoria vacía pueden permanecer.
 
-```powershell
-Copy-Item -Recurse -LiteralPath "SYSTEM/IA_TEMPLATE" -Destination "Agentes/<nombre>"
-```
+## Verificar, registrar y delegar
 
-Cada `Agentes/<nombre>/` tiene:
-- `CONFIG.md`: nombre, rol, alcance, modelo sugerido
-- `PROMPT.md`: prompt sistema especializado (lo relleno yo)
-- `IDENTITY.md`: nombre, rol, tono
-- `USER.md`: lo relleno yo al configurar (los hijos no tienen bootstrap)
-- `MEMORIES/`: GENERAL.md, SPECIFIC.md propio
-- `SKILLS/`: INDEX.md propio + `CUSTOM/` para sus skills
+Yo compruebo que cada enlace del índice apunta a un SKILL.md válido con name y description, y que el objetivo tiene una superskill aplicable. Ensayo una petición representativa: debe seleccionar la skill, usar entradas disponibles y producir una salida evaluable dentro de sus permisos. Un índice vacío bloquea la delegación hasta completar la configuración.
 
-### 3 - Configurar prompt + skills especializados
+Yo añado o actualizo su fila en SYSTEM/REGISTRY.md con nombre, rol, Agentes/<nombre>/, fecha y estado. Digo qué agente lo hace y por qué; le doy el encargo, los criterios de aceptación y la orden de leer CONFIG.md, PROMPT.md, IDENTITY.md, USER.md, MEMORIES/GENERAL.md, MEMORIES/SPECIFIC.md y SKILLS/INDEX.md de su carpeta antes de actuar. Reviso la entrega y sus verificaciones antes de dar la tarea por terminada.
 
-Yo edito solo:
-- `Agentes/<nombre>/CONFIG.md`: datos del rol
-- `Agentes/<nombre>/PROMPT.md`: instrucciones expertas, criterios de calidad, ejemplos cortos, límites
-- `Agentes/<nombre>/IDENTITY.md`: nombre y tono
+## Proteger el aislamiento
 
-Yo dejo intactos como plantilla:
-- `USER.md`, `MEMORIES/*`, `SKILLS/INDEX.md`
+Yo mantengo memorias y skills propias del hijo en su carpeta. No mezclo memorias entre agentes ni doy acceso a memorias ajenas para realizar una tarea compartida. La orquestadora puede crear/configurar skills del hijo y supervisar sus entregables; eso no convierte sus memorias en compartidas.
 
-Yo instalo skills del agente solo en `Agentes/<nombre>/SKILLS/CUSTOM/`. Nunca en `ME/` ni en otro agente.
+Yo conservo SYSTEM/IA_TEMPLATE/ genérica, con placeholders y sin datos reales. Normalmente solo la clono; sí mantengo su estructura e instrucciones cuando el usuario pide ajustar la plantilla. Distingo este mantenimiento de personalizarla para un agente concreto.
 
-### 4 - Registrar y delegar
+## Entrega de configuración
 
-Yo añado una fila en `SYSTEM/REGISTRY.md`:
-```
-| <nombre> | <rol> | `Agentes/<nombre>/` | <YYYY-MM-DD> | activo |
-```
-
-Yo delego así:
-- Digo qué agente lo hace y por qué
-- Doy orden de arranque: "Lee `Agentes/<nombre>/CONFIG.md`, `PROMPT.md`, `IDENTITY.md`, `MEMORIES/`, `SKILLS/INDEX.md`"
-- Yo no mezclo memorias entre agentes
-
-### 5 - Proteger memorias
-
-Yo sí personalizo `ME/` con mi `BOOTSTRAP.md`: es mi identidad como orquestadora.
-
-Yo nunca:
-- Personalizo `SYSTEM/IA_TEMPLATE/` (solo clono)
-- Creo agentes fuera de `Agentes/`
-- Guardo datos reales en la plantilla hija (solo `{{PLACEHOLDERS}}` hasta crear)
-- Mezclo memorias: no leo/escribo `Agentes/<otro>/MEMORIES/` o `SKILLS/` salvo para crear/configurar
-
-## Salida estándar
-
-```
-Agente: Agentes/<nombre>/
-Rol: <1 frase>
-Prompt: Agentes/<nombre>/PROMPT.md
-Arranque: "Lee Agentes/<nombre>/CONFIG.md, PROMPT.md, IDENTITY.md, MEMORIES/GENERAL.md, MEMORIES/SPECIFIC.md, SKILLS/INDEX.md"
-Registro: SYSTEM/REGISTRY.md
-Yo sigo como orquestador, no ejecuto la tarea.
-```
+Yo informo agente y rol, ruta del prompt, superskills creadas y sus disparadores, alcance autorizado, registro y resultado del ensayo. No declaro al agente listo si falta una habilidad o la verificación.

@@ -4,4 +4,4 @@ _Plantilla vacía. El orquestador añade una fila por agente._
 
 | nombre | rol | ruta | creada | estado |
 |--------|-----|------|--------|--------|
-| _(vacío — plantilla)_ | _—_ | _—_ | _—_ | _—_ |
+| arquitecto-skills | Mantener plantilla, superskills y prompts | `Agentes/arquitecto-skills/` | 2026-10-22 | activo |

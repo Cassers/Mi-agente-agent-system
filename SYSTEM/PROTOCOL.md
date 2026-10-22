@@ -1,30 +1,13 @@
-# PROTOCOL.md — Crear un agente (usa la skill)
+# PROTOCOL.md — Crear un agente
 
-_Sigo la skill `orquestar-agentes` al pie de la letra. Resumen operativo._
+_Yo sigo la skill orquestar-agentes; este es el resumen operativo._
 
-## 1 — Definir
+1. Yo reviso REGISTRY.md y reutilizo un agente adecuado o defino nombre, rol, objetivo, entradas, salida, alcance permitido y excluido.
+2. Yo clono SYSTEM/IA_TEMPLATE/ en Agentes/<nombre>/ sin sobrescribir un agente existente. No ejecuto bootstrap en hijos.
+3. Yo configuro CONFIG.md, PROMPT.md e IDENTITY.md; uso crear-prompts para el contrato. Conservo USER.md y memorias sin inventar datos personales.
+4. Yo creo superskills especializadas antes de delegar, siguiendo crear-superskills: búsqueda amplia en internet, lectura de skills relevantes e investigación profunda complementaria. Unifico en una skill si es cohesivo; si no, creo una skill índice que deriva a otras skills relevantes del propietario. Registro fuentes, aportes y límites sin prometer exhaustividad.
+5. Yo guardo las skills en Agentes/<nombre>/SKILLS/CUSTOM/ y completo SKILLS/INDEX.md con enlaces reales y disparadores. Un índice vacío no basta.
+6. Yo verifico frontmatter y enlaces, correspondencia entre encargo y skill, permisos coherentes y un caso representativo de selección y resultado. Conservo placeholders en la plantilla, no en el contrato configurado.
+7. Yo registro nombre, rol, carpeta, fecha y estado en REGISTRY.md y delego con arranque, encargo y aceptación. Reviso la entrega y sus comprobaciones.
 
-nombre kebab-case, rol 1 frase, prompt, skills iniciales, alcance-no. Si falta, pregunto.
-
-## 2 — Clonar
-
-```powershell
-Copy-Item -Recurse -LiteralPath "SYSTEM/IA_TEMPLATE" -Destination "Agentes/<nombre>"
-```
-
-Debe existir: `CONFIG.md`, `PROMPT.md`, `IDENTITY.md`, `USER.md`, `MEMORIES/`, `SKILLS/`.
-
-## 3 — Configurar
-
-Edito solo `CONFIG.md`, `PROMPT.md`, `IDENTITY.md`. Dejo `USER.md`, `MEMORIES/*`, `SKILLS/INDEX.md` como plantilla. Skills del agente solo en `Agentes/<nombre>/SKILLS/CUSTOM/`.
-
-## 4 — Registrar
-
-Fila en `SYSTEM/REGISTRY.md`:
-```
-| <nombre> | <rol> | `Agentes/<nombre>/` | <YYYY-MM-DD> | activo |
-```
-
-## 5 — Verificar
-
-`ME/` intacta, `IA_TEMPLATE/` con placeholders, sin referencias cruzadas, `git status` limpio salvo lo nuevo.
+Yo autorizo en CONFIG.md las rutas compartidas necesarias para el encargo; el aislamiento afecta memorias y skills propias, no impide editar entregables compartidos autorizados. No mezclo memorias ni borro skills ajenas. Yo mantengo IA_TEMPLATE/ genérica y puedo mejorarla cuando el usuario pide mantenimiento, sin personalizar sus placeholders.
